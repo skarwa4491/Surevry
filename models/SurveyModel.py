@@ -5,4 +5,4 @@ class SurveyModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title= db.Column(db.String , unique=True , nullable=False)
     description = db.Column(db.String ,unique=True ,nullable=False)
-    questions = db.relationship("QuestionModel", back_populates="survey" )
+    questions = db.relationship("QuestionModel", back_populates="survey" , lazy="dynamic" )

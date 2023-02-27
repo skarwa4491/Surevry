@@ -1,7 +1,7 @@
 from flask_smorest import abort,Blueprint
 from flask.views import MethodView
 from resources.schemas import QuestionSchema , PlainQuestionSchema
-from models import QuestionModel
+from models import QuestionModel,SurveyModel
 from db import db
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -21,7 +21,8 @@ class Questions(MethodView):
 
     @blp.response(200 , QuestionSchema(many=True))
     def get(self,survey_id):
-        return QuestionModel.query.all()
+        survey = SurveyModel.query.get_or_404(survey_id)
+        return survey.questions.all()
 
 @blp.route("/survey/<string:survey_id>/question/<string:id>")
 class QuestionList(MethodView):
