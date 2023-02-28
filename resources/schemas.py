@@ -17,3 +17,6 @@ class QuestionSchema(PlainQuestionSchema):
     options = fields.List(fields.Nested(PlainOptionSchema()))
 class SurveySchema(PlainSurveySchema):
     questions = fields.List(fields.Nested(QuestionSchema()))
+
+class OptionSchema(PlainOptionSchema):
+    options = fields.List(fields.Nested(PlainOptionSchema()))

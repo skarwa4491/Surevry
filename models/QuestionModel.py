@@ -7,4 +7,4 @@ class QuestionModel(db.Model):
     description = db.Column(db.String ,unique=False ,nullable=False)
     answer = db.Column(db.String , unique=False)
     survey = db.relationship("SurveyModel" , back_populates="questions")
-    options = db.relationship("OptionsModel" , back_populates = "questions")
+    options = db.relationship("OptionsModel" , back_populates = "questions" , lazy='dynamic')
